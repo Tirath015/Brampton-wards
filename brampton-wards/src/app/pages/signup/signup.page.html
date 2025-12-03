@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="signup-container">
+    <div class="signup-box">
+      <ion-icon name="person-add" class="signup-icon"></ion-icon>
+      <h2>Create Account</h2>
+      <p class="subtitle">Join Brampton Wards to explore infrastructure</p>
+
+      <form (ngSubmit)="onSignup()">
+        <ion-item>
+          <ion-label position="floating">Full Name</ion-label>
+          <ion-input type="text" [(ngModel)]="name" name="name" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" class="signup-btn" [disabled]="loading">
+          <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
+          <span *ngIf="!loading">Sign Up</span>
+        </ion-button>
+      </form>
+
+      <p class="login-link">
+        Already have an account? 
+        <a (click)="goToLogin()">Login here</a>
+      </p>
+    </div>
+  </div>
+</ion-content>

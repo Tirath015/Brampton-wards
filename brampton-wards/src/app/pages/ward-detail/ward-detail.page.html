@@ -1,0 +1,221 @@
+<ion-header>
+  <ion-toolbar class="ward-header">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="ward">Ward {{wardNumber}} - {{ward.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ward-content">
+
+  <!-- Loading Spinner -->
+  <div *ngIf="!ward" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading ward data...</p>
+  </div>
+
+  <!-- Ward Details -->
+  <div *ngIf="ward" class="ward-details">
+
+    <!-- Population Card -->
+    <ion-card class="population-card">
+      <ion-card-header>
+        <ion-card-title>Ward {{wardNumber}}</ion-card-title>
+        <ion-card-subtitle>{{ward.name}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="population-box">
+          <ion-icon name="people-outline"></ion-icon>
+          <h2>{{ward.population?.toLocaleString() || '0'}}</h2>
+          <p>Total Population (2021)</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Facilities Overview -->
+    <ion-card class="facilities-card">
+      <ion-card-header>
+        <ion-card-title>Infrastructure & Services</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <div class="stat-box schools">
+                <h4>{{facilityTypes.schools}}</h4>
+                <p>Schools</p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="stat-box police">
+                <h4>{{facilityTypes.police}}</h4>
+                <p>Police</p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="stat-box fire">
+                <h4>{{facilityTypes.fire}}</h4>
+                <p>Fire</p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="stat-box healthcare">
+                <h4>{{facilityTypes.healthcare}}</h4>
+                <p>Healthcare</p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <div class="total-facilities">
+                <strong>Total Facilities:</strong> {{ward.facilityCount}}
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- AI Analysis -->
+    <ion-card class="analysis-card">
+      <ion-card-header>
+        <ion-card-title>AI Infrastructure Analysis</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngIf="loading" class="loading-analysis">
+          <ion-spinner name="crescent"></ion-spinner>
+          <p>Analyzing ward infrastructure...</p>
+        </div>
+        <div *ngIf="geminiAnalysis && !loading" class="analysis-text">
+          {{geminiAnalysis}}
+        </div>
+        <p *ngIf="!geminiAnalysis && !loading" class="analysis-placeholder">
+          Generating analysis...
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+<!-- Construction Projects -->
+<ion-card *ngIf="constructionList.length > 0" class="construction-card">
+  <ion-card-header>
+    <ion-card-title>Road Construction & Projects</ion-card-title>
+    <ion-card-subtitle>Active & Planned Infrastructure Work</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <div class="construction-list">
+      <ion-item 
+        class="construction-item"
+        *ngFor="let c of constructionList"
+        (click)="showConstructionOnMap(c)">
+        
+        <ion-label>
+          <h2>{{ c.properties.TITLE }}</h2>
+
+          <p>
+            <strong>Status:</strong>
+            <span 
+              class="status-badge"
+              [ngClass]="{
+                'status-active': c.properties.STATUS === 'In Progress',
+                'status-planned': c.properties.STATUS === 'Planning',
+                'status-completed': c.properties.STATUS === 'Completed',
+                'status-onhold': c.properties.STATUS === 'On Hold',
+                'status-archive': c.properties.STATUS === 'Archive'
+              }">
+              {{ c.properties.STATUS }}
+            </span>
+          </p>
+
+          <p><strong>Type:</strong> {{ c.properties.TYPE_OF_PROJECT }}</p>
+        </ion-label>
+
+        <ion-button fill="clear" color="primary">
+          <ion-icon name="navigate-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+<!-- No Construction -->
+<ion-card *ngIf="constructionList.length === 0" class="no-construction-card">
+  <ion-card-content>
+    <ion-icon name="remove-circle-outline" class="no-construction-icon"></ion-icon>
+    <p>No construction projects in this ward.</p>
+  </ion-card-content>
+</ion-card>
+
+
+    <!-- Facilities Table -->
+    <ion-card *ngIf="facilities.length > 0" class="facility-table-card">
+      <ion-card-header>
+        <ion-card-title>All Facilities by Category</ion-card-title>
+        <ion-card-subtitle>Click on any facility to view on map</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="table-scroll">
+          <table class="facility-table">
+            <thead>
+              <tr>
+                <th>Schools ({{facilityTypes.schools}})</th>
+                <th>Police ({{facilityTypes.police}})</th>
+                <th>Fire ({{facilityTypes.fire}})</th>
+                <th>Healthcare ({{facilityTypes.healthcare}})</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of getMaxRows(); let i = index">
+                <td>
+                  <span *ngIf="getFacilityObjectByIndex('school', i)" class="facility-link"
+                        (click)="showFacilityOnMap(getFacilityObjectByIndex('school', i))">
+                    {{getFacilityObjectByIndex('school', i)?.name || '-'}}
+                    <ion-icon name="location-outline" class="location-icon"></ion-icon>
+                  </span>
+                  <span *ngIf="!getFacilityObjectByIndex('school', i)">-</span>
+                </td>
+                <td>
+                  <span *ngIf="getFacilityObjectByIndex('police', i)" class="facility-link"
+                        (click)="showFacilityOnMap(getFacilityObjectByIndex('police', i))">
+                    {{getFacilityObjectByIndex('police', i)?.name || '-'}}
+                    <ion-icon name="location-outline" class="location-icon"></ion-icon>
+                  </span>
+                  <span *ngIf="!getFacilityObjectByIndex('police', i)">-</span>
+                </td>
+                <td>
+                  <span *ngIf="getFacilityObjectByIndex('fire', i)" class="facility-link"
+                        (click)="showFacilityOnMap(getFacilityObjectByIndex('fire', i))">
+                    {{getFacilityObjectByIndex('fire', i)?.name || '-'}}
+                    <ion-icon name="location-outline" class="location-icon"></ion-icon>
+                  </span>
+                  <span *ngIf="!getFacilityObjectByIndex('fire', i)">-</span>
+                </td>
+                <td>
+                  <span *ngIf="getFacilityObjectByIndex('healthcare', i)" class="facility-link"
+                        (click)="showFacilityOnMap(getFacilityObjectByIndex('healthcare', i))">
+                    {{getFacilityObjectByIndex('healthcare', i)?.name || '-'}}
+                    <ion-icon name="location-outline" class="location-icon"></ion-icon>
+                  </span>
+                  <span *ngIf="!getFacilityObjectByIndex('healthcare', i)">-</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- No Facilities -->
+    <ion-card *ngIf="facilities.length === 0" class="no-facilities-card">
+      <ion-card-content>
+        <ion-icon name="alert-circle-outline" class="no-facilities-icon"></ion-icon>
+        <p>No facilities found in this ward.</p>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+</ion-content>

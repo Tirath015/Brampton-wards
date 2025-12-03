@@ -1,0 +1,245 @@
+/* General content padding */
+.home-content {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  background-color: #f4f7fc;
+}
+
+/* Header */
+.custom-header {
+  --background: linear-gradient(90deg, #0052cc, #00c2cb);
+  color: white;
+}
+
+.header-title .title-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 28px;
+  color: #fff;
+}
+
+.logout-btn {
+  --color: #fff;
+  font-weight: bold;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  background: linear-gradient(to right, #0052cc, #00c2cb);
+  border-radius: 16px;
+  margin: 16px 0;
+  color: #fff;
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin: 16px 0 24px 0;
+  color: #e0f7fa;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: #fff;
+  color: #0052cc;
+  flex: 1 1 100px;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.stat-icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+/* Action Cards */
+.action-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.action-card {
+  flex: 1 1 280px;
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  color: #fff;
+}
+
+.map-card {
+  background: linear-gradient(135deg, #0052cc, #00c2cb);
+}
+
+.ward-card {
+  background: linear-gradient(135deg, #ff6f61, #ff9f80);
+}
+
+.construction-card {
+  background: linear-gradient(135deg, #ffb74d, #ffa726);
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.card-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.card-icon {
+  font-size: 42px;
+  color: #fff;
+}
+
+/* Card titles and description */
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+/* Features Section */
+.features-section {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.feature-item {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.feature-icon {
+  font-size: 36px;
+  color: #0052cc;
+  margin-bottom: 12px;
+}
+
+.feature-item h3 {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.feature-item p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Footer */
+.footer {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 32px 16px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.footer a {
+  color: #00c2cb;
+  display: block;
+  margin-bottom: 6px;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ff6f61;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+.custom-header {
+  --background: transparent;
+  box-shadow: none;
+}
+
+.header-content {
+  width: 100%;
+  background: linear-gradient(90deg, #004aad, #0095a8);
+  padding: 18px 24px;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.header-content h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.logout-btn {
+  --background: #ffffff;
+  --color: #004aad;
+  font-weight: bold;
+  border-radius: 10px;
+}
+

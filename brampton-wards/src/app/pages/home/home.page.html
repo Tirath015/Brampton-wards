@@ -1,0 +1,194 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="header-toolbar">
+    <ion-title class="header-title">
+      <div class="title-container">
+        <ion-icon name="map" class="logo-icon"></ion-icon>
+        <span class="app-name">Brampton Wards</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="home-content">
+
+  <!-- Floating Logout Button -->
+  <ion-button (click)="logout()" class="floating-logout">
+    <ion-icon name="log-out-outline" slot="start"></ion-icon>
+    Logout
+  </ion-button>
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Welcome to Brampton Wards</h1>
+      <p class="hero-subtitle">Explore infrastructure, facilities, and construction projects across all 10 wards</p>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <ion-icon name="business" class="stat-icon"></ion-icon>
+          <h3>10</h3>
+          <p>Wards</p>
+        </div>
+        <div class="stat-card">
+          <ion-icon name="school" class="stat-icon"></ion-icon>
+          <h3>295</h3>
+          <p>Facilities</p>
+        </div>
+        <div class="stat-card">
+          <ion-icon name="construct" class="stat-icon"></ion-icon>
+          <h3>Active</h3>
+          <p>Projects</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions Section -->
+  <div class="section-container">
+    <h2 class="section-title">Quick Actions</h2>
+    <div class="action-cards">
+
+      <ion-card class="action-card map-card" (click)="navigateToMap()">
+  <div class="card-icon-wrapper map-icon-bg">
+    <ion-icon name="map" class="card-icon"></ion-icon>
+  </div>
+
+  <ion-card-header>
+    <ion-card-title class="card-title">Explore Map</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <p class="card-description">View interactive map with all wards, facilities, and construction sites</p>
+
+    <ion-button expand="block" fill="clear" class="card-button"
+                (click)="navigateToMap(); $event.stopPropagation();">
+      View Map
+      <ion-icon name="arrow-forward" slot="end"></ion-icon>
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+
+      <ion-card class="action-card ward-card" (click)="navigateToWardList()">
+        <div class="card-icon-wrapper ward-icon-bg">
+          <ion-icon name="analytics" class="card-icon"></ion-icon>
+        </div>
+        <ion-card-header>
+          <ion-card-title class="card-title">Ward Details</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="card-description">Access detailed information about each ward's infrastructure and services</p>
+          <ion-button expand="block" fill="clear" class="card-button">
+            View Wards
+            <ion-icon name="arrow-forward" slot="end"></ion-icon>
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="action-card construction-card" (click)="navigateToMap()">
+        <div class="card-icon-wrapper construction-icon-bg">
+          <ion-icon name="construct" class="card-icon"></ion-icon>
+        </div>
+        <ion-card-header>
+          <ion-card-title class="card-title">Construction Projects</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="card-description">Track ongoing and upcoming construction projects in your area</p>
+          <ion-button expand="block" fill="clear" class="card-button">
+            View Projects
+            <ion-icon name="arrow-forward" slot="end"></ion-icon>
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="features-section">
+    <h2 class="section-title">Key Features</h2>
+    <div class="features-grid">
+
+      <div class="feature-item">
+        <div class="feature-icon-wrapper">
+          <ion-icon name="location" class="feature-icon"></ion-icon>
+        </div>
+        <h3>Interactive Maps</h3>
+        <p>Explore Brampton with satellite view and detailed ward boundaries</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon-wrapper">
+          <ion-icon name="school" class="feature-icon"></ion-icon>
+        </div>
+        <h3>Facility Finder</h3>
+        <p>Locate schools, hospitals, fire stations, and police services</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon-wrapper">
+          <ion-icon name="sparkles" class="feature-icon"></ion-icon>
+        </div>
+        <h3>AI Analysis</h3>
+        <p>Get intelligent insights about ward infrastructure using Gemini AI</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon-wrapper">
+          <ion-icon name="bar-chart" class="feature-icon"></ion-icon>
+        </div>
+        <h3>Live Statistics</h3>
+        <p>Access real-time data about population, facilities, and services</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon-wrapper">
+          <ion-icon name="hammer" class="feature-icon"></ion-icon>
+        </div>
+        <h3>Project Tracking</h3>
+        <p>Monitor construction projects and infrastructure improvements</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon-wrapper">
+          <ion-icon name="people" class="feature-icon"></ion-icon>
+        </div>
+        <h3>Community Info</h3>
+        <p>Discover demographic data and ward-specific information</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Brampton Wards</h3>
+        <p>Your comprehensive guide to Brampton's infrastructure and services</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <a (click)="navigateToMap()">Interactive Map</a>
+        <a (click)="navigateToWardList()">Ward Details</a>
+        <a>About</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>Sheridan College</p>
+        <p>Brampton, Ontario</p>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <div class="social-icons">
+          <ion-icon name="logo-github"></ion-icon>
+          <ion-icon name="logo-linkedin"></ion-icon>
+          <ion-icon name="mail"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Brampton Wards.</p>
+    </div>
+  </div>
+
+</ion-content>

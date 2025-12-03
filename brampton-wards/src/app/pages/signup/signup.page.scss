@@ -1,0 +1,125 @@
+ion-content {
+  --background: linear-gradient(135deg, #e0f7fa 0%, #fffde7 100%);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 20px;
+}
+
+.signup-box {
+  background: #ffffff;
+  border-radius: 25px;
+  padding: 50px 35px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  }
+
+  .signup-icon {
+    font-size: 70px;
+    color: #00bcd4; /* Teal accent */
+    display: block;
+    margin: 0 auto 25px;
+  }
+
+  h2 {
+    text-align: center;
+    margin: 0 0 12px 0;
+    color: #333333;
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #666666;
+    margin: 0 0 30px 0;
+    font-size: 15px;
+  }
+
+  ion-item {
+    --background: #f5f5f5;
+    --border-radius: 12px;
+    margin-bottom: 18px;
+    --padding-start: 18px;
+
+    ion-label {
+      color: #555555;
+    }
+
+    input {
+      color: #333333;
+    }
+
+    &:focus-within {
+      --background: #e0f7fa;
+      box-shadow: 0 0 8px rgba(0, 188, 212, 0.5);
+    }
+  }
+
+  .signup-btn {
+    margin-top: 25px;
+    --border-radius: 30px;
+    height: 52px;
+    font-weight: 600;
+    --background: linear-gradient(135deg, #ff9800 0%, #ffc107 100%); /* Orange gradient */
+    --color: #ffffff;
+    box-shadow: 0 8px 20px rgba(255,152,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(255,152,0,0.4);
+    }
+
+    &:active {
+      transform: translateY(1px);
+      box-shadow: 0 5px 15px rgba(255,152,0,0.3);
+    }
+  }
+
+  .login-link {
+    text-align: center;
+    margin-top: 25px;
+    color: #666666;
+    font-size: 14px;
+
+    a {
+      color: #00bcd4; /* Teal accent */
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        color: #0097a7;
+      }
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .signup-box {
+    padding: 40px 25px;
+  }
+
+  .signup-icon {
+    font-size: 60px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
