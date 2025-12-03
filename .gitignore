@@ -1,0 +1,21 @@
+# Environment files
+.env
+Backend/.env
+brampton-wards/.env
+
+# Node modules
+node_modules/
+
+# Ionic build output
+www/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
